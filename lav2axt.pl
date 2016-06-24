@@ -107,9 +107,11 @@ for my $lav (@lavs) {
     #----------------------------#
     if ( !exists $cache{$t_file} ) {
         my $seq_of = App::Fasops::Common::read_fasta($t_file);
+        my @seq_name_list = keys %{$seq_of};
         $cache{$t_file} = {
             seq_of    => $seq_of,
-            seq_names => keys %{$seq_of},
+            seq_names => \@seq_name_list,
+    #        seq_names => keys %{$seq_of},
         };
     }
     my $t_name = $cache{$t_file}->{seq_names}->[ $t_contig - 1 ];
@@ -117,9 +119,11 @@ for my $lav (@lavs) {
 
     if ( !exists $cache{$q_file} ) {
         my $seq_of = App::Fasops::Common::read_fasta($q_file);
+        my @seq_name_list = keys %{$seq_of};
         $cache{$q_file} = {
             seq_of    => $seq_of,
-            seq_names => keys %{$seq_of},
+            seq_names => \@seq_name_list,
+    #        seq_names => keys %{$seq_of},
         };
     }
     my $q_name = $cache{$q_file}->{seq_names}->[ $q_contig - 1 ];
